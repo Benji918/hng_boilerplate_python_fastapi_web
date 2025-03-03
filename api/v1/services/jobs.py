@@ -65,7 +65,7 @@ class JobService():
     def update(self, db: Session, id: str, schema):
         """Updates a job"""
 
-        job = self.fetch(db=db, id=id)
+        job = self.retrieve(db=db, job_id=id)
 
         # Update the fields with the provided schema data
         update_data = schema.dict(exclude_unset=True)
@@ -79,7 +79,7 @@ class JobService():
     def delete(self, db: Session, id: str):
         """Deletes a job"""
 
-        job = self.fetch(db=db, id=id)
+        job = self.retrieve(db=db, job_id=id)
         db.delete(job)
         db.commit()
 
